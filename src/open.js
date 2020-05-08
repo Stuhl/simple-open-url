@@ -11,11 +11,12 @@ function _getCommand() {
         'sunos': 'xdg-open', // maybe should detect the os version for Solaris 11 and later
         'win32': 'start'
     }
+    Object.freeze(commands)
     return commands[process.platform] || null
 }
 
 function open(url) {
-    let command = _getCommand()
+    const command = _getCommand()
     if (!command) {
         console.error(`Your platform ${platform} is not supported, please use other package instead`)
         return
